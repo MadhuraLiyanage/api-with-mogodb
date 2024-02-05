@@ -1,8 +1,8 @@
 export enum StatusCode {
-    Successful = "000",
-    NotFound = "020",
-    AlreadyExists = "030",
+    Successful = "100",
+    NoRecordsFound = "101",
+    AlreadyExists = "200",
+    NotFound = "300",
     InvalidRequest = "600",
-    Error = "900",
-    
+    Error = "900"
   }

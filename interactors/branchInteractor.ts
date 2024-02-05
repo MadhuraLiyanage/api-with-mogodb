@@ -10,17 +10,16 @@ export class BranchInteractor implements IBranchInteractor{
         this.repository = repository;
     }
 
-    createBranch(branch: Branch): Promise<ResponseData> {
-        throw new Error("Method not implemented.");
+    createBranch(branch: Branch, userId: string): Promise<ResponseData> {
+        return this.repository.create(branch, userId);
     }
-    updateBranch(branch: Branch): Promise<ResponseData> {
-        throw new Error("Method not implemented.");
+    updateBranch(branch: Branch, userId: string): Promise<ResponseData> {
+        return this.repository.update(branch, userId);
     }
-    getBranches(limit: number, offset: number): Promise<ResponseData>{
-        return this.repository.find(limit, offset);
+    getBranches(limit: number, offset: number, showAudit: number): Promise<ResponseData>{
+        return this.repository.find(limit, offset, showAudit);
     }
     getBranch(branchCode: string): Promise<ResponseData> {
-        throw new Error("Method not implemented.");
+        return this.repository.findOne(branchCode);
     }
-    
 }
