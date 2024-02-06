@@ -70,11 +70,10 @@ export class BranchRepository implements IBranchRepository {
     }
 
     async find(limit: number, offset: number, showAudit: number): Promise<ResponseData> {
-        const excludeAudit = {
-            audit: showAudit===1? 1 : 0,
-            __v: showAudit===0? 0 : 1,
-        }
-        return await mongoBranch.find({},excludeAudit).skip(offset).limit(limit)
+
+        const hideAudit = showAudit !==1? {audit:0, __v:0} : {}
+
+        return await mongoBranch.find({}, hideAudit).skip(offset).limit(limit)
             .then((data: any) => {
                 const resData = new ResponseData(data.length > 0? StatusCode.Successful: StatusCode.NoRecordsFound, StatusMessage.Successful, data);
                 return resData;
